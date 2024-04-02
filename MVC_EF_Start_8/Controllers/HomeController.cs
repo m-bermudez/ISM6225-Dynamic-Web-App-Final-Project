@@ -1,32 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using MVC_EF_Start_8.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MVC_EF_Start_8.Controllers;
-
-public class HomeController : Controller
+namespace MVC_EF_Start_8.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
+  public class HomeController : Controller
+  {
     public IActionResult Index()
     {
-        return View();
+      return View();
     }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+  }
 }
-
