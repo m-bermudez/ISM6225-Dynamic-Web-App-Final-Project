@@ -1,4 +1,52 @@
-﻿body {
+﻿/* Global body styles */
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Arial, sans-serif; /* Default font */
+}
+
+/* Header styles */
+.header {
+    text-align: center; /* Centering the h1 */
+    margin-bottom: 20px; /* Space below the header */
+}
+
+    /* Center the h1 tag */
+    .header h1 {
+        margin: 0;
+        font-size: 36px;
+    }
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* This will make the items align horizontally */
+    justify-content: center; /* Centers the nav items */
+}
+
+    nav ul li {
+        margin: 0 15px; /* Horizontal spacing between the links */
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            padding: 10px;
+            transition: color 0.3s ease; /* Add a hover effect for the links */
+        }
+
+            /* Hover effect on links */
+            nav ul li a:hover {
+                color: #007bff;
+            }
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    margin-top: 20px;
 }
