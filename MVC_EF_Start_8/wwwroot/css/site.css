@@ -1,54 +1,189 @@
-﻿/* Global body styles */
+﻿/* USF-Inspired Theme */
+:root {
+    --usf-green: #00543C; /* Primary USF green */
+    --usf-gold: #FDBB30;  /* USF gold */
+    --usf-light-green: #8D9E89; /* Secondary green */
+    --usf-dark-green: #003D2B; /* Darker green */
+    --usf-gray: #5D5D5D;  /* Neutral gray */
+    --usf-light-gray: #F5F5F5; /* Background gray */
+    --usf-white: #FFFFFF;
+    --usf-black: #000000;
+}
+
+/* Global body styles */
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    font-family: Arial, sans-serif; /* Default font */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--usf-gray);
+    background-color: var(--usf-light-gray);
 }
 
 /* Header styles */
 .header {
-    text-align: center; /* Centering the h1 */
-    margin-bottom: 20px; /* Space below the header */
+    background-color: var(--usf-green);
+    color: var(--usf-white);
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-    /* Center the h1 tag */
-    .header h1 {
-        margin: 0;
-        font-size: 36px;
-    }
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--usf-white);
+}
 
 /* Navigation styles */
+nav {
+    background-color: var(--usf-dark-green);
+    padding: 10px 0;
+}
+
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: flex; /* This will make the items align horizontally */
-    justify-content: center; /* Centers the nav items */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-    nav ul li {
-        margin: 0 15px; /* Horizontal spacing between the links */
-    }
+nav ul li {
+    margin: 0 15px;
+}
 
-        nav ul li a {
-            text-decoration: none;
-            font-size: 18px;
-            color: #333;
-            padding: 10px;
-            transition: color 0.3s ease; /* Add a hover effect for the links */
-        }
+nav ul li a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--usf-white);
+    padding: 8px 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    font-weight: 500;
+}
 
-            /* Hover effect on links */
-            nav ul li a:hover {
-                color: #007bff;
-            }
+nav ul li a:hover {
+    background-color: var(--usf-gold);
+    color: var(--usf-dark-green);
+}
+
+/* Main content area */
+.body-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 300px); /* Adjust based on header/footer height */
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--usf-gold);
+    color: var(--usf-dark-green);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #E6A91E;
+    color: var(--usf-dark-green);
+}
+
+.btn-primary {
+    background-color: var(--usf-green);
+    color: var(--usf-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--usf-dark-green);
+}
 
 /* Footer styles */
 .footer {
+    background-color: var(--usf-green);
+    color: var(--usf-white);
     text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer a {
+    color: var(--usf-gold);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Chart container styles (moved from section) */
+.chart-container {
+    background: var(--usf-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     padding: 20px;
-    background-color: #f1f1f1;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .body-content {
+        padding: 15px;
+    }
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--usf-green);
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Form elements */
+input, select, textarea {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--usf-gold);
+    box-shadow: 0 0 0 2px rgba(253, 187, 48, 0.3);
 }
 
 @section Styles {

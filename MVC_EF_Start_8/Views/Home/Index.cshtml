@@ -1,15 +1,8 @@
 ﻿@{
-    Layout = "_Layout"; // Reference to the layout file
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <h2 class=".header">Hello Ecommerce!</h2>
-    <button><a asp-controller="Home" asp-action="DataVisualization" class="btn btn-primary">View Data Visualization</a></button>
-</body>
-</html>
+<h2>Welcome to Our Ecommerce Platform</h2>
+<p>Explore our data visualization tools and insights.</p>
+<a asp-controller="Home" asp-action="DataVisualization" class="btn btn-primary">View Data Visualization</a>

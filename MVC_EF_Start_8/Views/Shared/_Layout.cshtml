@@ -1,23 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - App Dev Group 4 Dynamic Web Page</title>
     @RenderSection("Styles", required: false)
 </head>
 <body>
+    <header class="header">
+        <h1>Group 4</h1>
+    </header>
 
-    <div class="header">
-        <h1>My Site</h1>
-    </div>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <!--<li><a asp-controller="Home" asp-action="About">About</a></li> -->
+            <li><a asp-controller="Home" asp-action="DataVisualization">Data Visualization</a></li>
+            <!-- Add more navigation items as needed -->
+        </ul>
+    </nav>
 
-    <div class="body-content">
+    <main class="body-content">
         @RenderBody()
-    </div>
+    </main>
 
-    <div class="footer">
-        Footer goes here
-    </div>
-    <script src="~/js/site.js"></script>
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year - Dynamic Application</p>
+        <p>Contact: <a href="mailto:bermudezm@usf.edu">bermudezm@usf.edu</a> <a href="mailto:martaf@usf.edu">martaf@usf.edu</a> <a href="mailto:montoyaruiz@usf.edu">montoyaruiz@usf.edu</a> <a href="mailto:stopczynski@usf.edu">stopczynski@usf.edu</a></p>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
