@@ -50,3 +50,19 @@ nav ul {
     background-color: #f1f1f1;
     margin-top: 20px;
 }
+
+@section Styles {
+    <style>
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    </style>
+}

@@ -2,19 +2,12 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
 
     <div class="header">
         <h1>My Site</h1>
-        <nav>
-            <ul>
-                <!-- Corrected hrefs to use asp-page for Razor Pages -->
-                <li><a asp-page="/Index">Home</a></li>
-                <li><a asp-page="/About">About</a></li>
-                <li><a asp-page="/Cru">CRU</a></li>
-            </ul>
-        </nav>
     </div>
 
     <div class="body-content">
@@ -24,6 +17,7 @@
     <div class="footer">
         Footer goes here
     </div>
-
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
