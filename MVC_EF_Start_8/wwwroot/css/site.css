@@ -78,6 +78,41 @@ nav ul li a:hover {
     margin: 0 auto;
     min-height: calc(100vh - 300px); /* Adjust based on header/footer height */
 }
+/* Additional styles for Auto Market */
+.intro {
+    background-color: var(--usf-white);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.features {
+    background-color: var(--usf-white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.features li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.features li:before {
+    content: "•";
+    color: var(--usf-gold);
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
 /* Button styles */
 .btn {
