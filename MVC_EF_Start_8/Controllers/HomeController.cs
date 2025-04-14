@@ -12,8 +12,13 @@ namespace MVC_EF_Start_8.Controllers
     {
       return View();
     }
-    // In your Controller (e.g., HomeController.cs)
-    public IActionResult DataVisualization()
+
+    public IActionResult About()
+    {
+        return View();
+    }
+        // In your Controller (e.g., HomeController.cs)
+        public IActionResult DataVisualization()
     {
         var rand = new Random();
 

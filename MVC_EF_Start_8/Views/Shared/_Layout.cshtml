@@ -11,15 +11,33 @@
     <header class="header">
         <h1>Group 4</h1>
     </header>
-
     <nav>
         <ul>
             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
             <!--<li><a asp-controller="Home" asp-action="About">About</a></li> -->
+
+
+    <div class="header">
+        <h1>My Site</h1>
+        <nav>
+            <ul>
+                <!-- Corrected hrefs to use asp-page for Razor Pages -->
+                <li><a asp-page="/Index">Home</a></li>
+                <li><a asp-page="/About">About</a></li>
+                <li><a asp-page="/Cru">CRU</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Home" asp-action="About">About Us</a></li>
             <li><a asp-controller="Home" asp-action="DataVisualization">Data Visualization</a></li>
             <!-- Add more navigation items as needed -->
         </ul>
     </nav>
+
 
     <main class="body-content">
         @RenderBody()

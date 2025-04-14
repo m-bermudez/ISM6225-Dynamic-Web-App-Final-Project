@@ -221,6 +221,75 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 0 0 2px rgba(253, 187, 48, 0.3);
 }
 
+
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .body-content {
+        padding: 15px;
+    }
+}
+
+
+/* Team Section Styles */
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.team-member {
+    flex: 1 1 200px;
+    max-width: 220px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.team-member h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+/* Form elements */
+input, select, textarea {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--usf-gold);
+    box-shadow: 0 0 0 2px rgba(253, 187, 48, 0.3);
+}
+
 @section Styles {
     <style>
         .chart-container {
@@ -235,4 +304,7 @@ input:focus, select:focus, textarea:focus {
             height: 300px !important;
         }
     </style>
+
 }
+
+
