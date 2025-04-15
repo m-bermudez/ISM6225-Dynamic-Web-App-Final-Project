@@ -22,7 +22,6 @@ namespace MVC_EF_Start_8.Controllers
         {
             return View();
         }
-
         public async Task<ViewResult> DatabaseOperations()
         {
             // CREATE operation

@@ -1,14 +1,69 @@
 ﻿@{
-    Layout = "_Layout"; // Reference to the layout file
+    ViewData["Title"] = "Home - Auto Market";
+    Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <h2>Hello Ecommerce!</h2>
-</body>
-</html>
+<section class="intro">
+    <h2>Welcome to Auto Market</h2>
+    <p>Your premier destination for vehicle data analysis and visualization.</p>
+    <a asp-controller="Home" asp-action="DataVisualization" class="btn btn-primary">View Data Visualization</a>
+</section>
+
+<section class="features">
+    <h3>Why Choose Auto Market?</h3>
+    <ul>
+        <li>Comprehensive vehicle database with real-time insights</li>
+        <li>Interactive data visualization tools</li>
+        <li>User-friendly CRUD operations for data management</li>
+        <li>Responsive design works on all devices</li>
+    </ul>
+</section>
+
+<section class="quick-links">
+    <h3>Get Started</h3>
+    <div class="link-grid">
+        <a asp-controller="Home" asp-action="DataVisualization" class="btn">
+            <i class="fas fa-chart-bar"></i> View Charts
+        </a>
+        <a asp-controller="Home" asp-action="Create" class="btn">
+            <i class="fas fa-plus"></i> Add Vehicle
+        </a>
+        <a asp-controller="Home" asp-action="About" class="btn btn-outline">
+            <i class="fas fa-users"></i> Meet Our Team
+        </a>
+    </div>
+</section>
+
+@section Styles {
+    <style>
+        .quick-links {
+            background-color: var(--usf-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--usf-green);
+            color: var(--usf-green);
+        }
+        
+        .btn-outline:hover {
+            background: var(--usf-green);
+            color: white;
+        }
+        
+        .fas {
+            margin-right: 8px;
+        }
+    </style>
+}
