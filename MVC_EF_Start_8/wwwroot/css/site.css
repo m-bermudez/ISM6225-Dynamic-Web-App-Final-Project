@@ -1,16 +1,24 @@
-﻿/* USF-Inspired Theme */
-:root {
-    --usf-green: #00543C; /* Primary USF green */
-    --usf-gold: #FDBB30;  /* USF gold */
+﻿/* ====================
+   USF-INSPIRED THEME
+   ==================== */
+
+/* ----------
+   Variables 
+   ---------- */
+   :root {
+    --usf-green: #00543C;       /* Primary USF green */
+    --usf-gold: #FDBB30;        /* USF gold */
     --usf-light-green: #8D9E89; /* Secondary green */
-    --usf-dark-green: #003D2B; /* Darker green */
-    --usf-gray: #5D5D5D;  /* Neutral gray */
-    --usf-light-gray: #F5F5F5; /* Background gray */
+    --usf-dark-green: #003D2B;  /* Darker green */
+    --usf-gray: #5D5D5D;        /* Neutral gray */
+    --usf-light-gray: #F5F5F5;  /* Background gray */
     --usf-white: #FFFFFF;
     --usf-black: #000000;
 }
 
-/* Global body styles */
+/* ----------
+   Base Styles 
+   ---------- */
 body {
     padding-top: 0;
     padding-bottom: 0;
@@ -21,7 +29,19 @@ body {
     background-color: var(--usf-light-gray);
 }
 
-/* Header styles */
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--usf-green);
+    margin-top: 0;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+
+/* ----------
+   Layout Components 
+   ---------- */
+/* Header */
 .header {
     background-color: var(--usf-green);
     color: var(--usf-white);
@@ -32,12 +52,11 @@ body {
 
 .header h1 {
     margin: 0;
-    font-size: 2.5rem;
     font-weight: bold;
     color: var(--usf-white);
 }
 
-/* Navigation styles */
+/* Navigation */
 nav {
     background-color: var(--usf-dark-green);
     padding: 10px 0;
@@ -71,14 +90,36 @@ nav ul li a:hover {
     color: var(--usf-dark-green);
 }
 
-/* Main content area */
+/* Main Content */
 .body-content {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: calc(100vh - 300px); /* Adjust based on header/footer height */
+    min-height: calc(100vh - 300px);
 }
-/* Additional styles for Auto Market */
+
+/* Footer */
+.footer {
+    background-color: var(--usf-green);
+    color: var(--usf-white);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer a {
+    color: var(--usf-gold);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ----------
+   Content Sections 
+   ---------- */
+/* Intro Section */
 .intro {
     background-color: var(--usf-white);
     padding: 2rem;
@@ -87,6 +128,7 @@ nav ul li a:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Features Section */
 .features {
     background-color: var(--usf-white);
     padding: 2rem;
@@ -114,7 +156,37 @@ nav ul li a:hover {
     top: 0;
 }
 
-/* Button styles */
+/* Team Section */
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.team-member {
+    flex: 1 1 200px;
+    max-width: 220px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.team-member h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+/* ----------
+   UI Components 
+   ---------- */
+/* Buttons */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -142,25 +214,22 @@ nav ul li a:hover {
     background-color: var(--usf-dark-green);
 }
 
-/* Footer styles */
-.footer {
-    background-color: var(--usf-green);
-    color: var(--usf-white);
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 40px;
+/* Forms */
+input, select, textarea {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
 }
 
-.footer a {
-    color: var(--usf-gold);
-    text-decoration: none;
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--usf-gold);
+    box-shadow: 0 0 0 2px rgba(253, 187, 48, 0.3);
 }
 
-.footer a:hover {
-    text-decoration: underline;
-}
-
-/* Chart container styles (moved from section) */
+/* Charts */
 .chart-container {
     background: var(--usf-white);
     border-radius: 8px;
@@ -175,7 +244,9 @@ canvas {
     height: 300px !important;
 }
 
-/* Responsive adjustments */
+/* ----------
+   Responsive Design 
+   ---------- */
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
@@ -193,118 +264,13 @@ canvas {
     .body-content {
         padding: 15px;
     }
-}
 
-/* Typography enhancements */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--usf-green);
-    margin-top: 0;
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-/* Form elements */
-input, select, textarea {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--usf-gold);
-    box-shadow: 0 0 0 2px rgba(253, 187, 48, 0.3);
-}
-
-
-canvas {
-    width: 100% !important;
-    height: 300px !important;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    nav ul {
+    .team-grid {
         flex-direction: column;
         align-items: center;
     }
     
-    nav ul li {
-        margin: 5px 0;
-    }
-    
-    .header h1 {
-        font-size: 2rem;
-    }
-    
-    .body-content {
-        padding: 15px;
+    .team-member {
+        max-width: 100%;
     }
 }
-
-
-/* Team Section Styles */
-.team-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    gap: 20px;
-}
-
-.team-member {
-    flex: 1 1 200px;
-    max-width: 220px;
-    text-align: center;
-}
-
-.team-member img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.team-member h4 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-/* Form elements */
-input, select, textarea {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--usf-gold);
-    box-shadow: 0 0 0 2px rgba(253, 187, 48, 0.3);
-}
-
-@section Styles {
-    <style>
-        .chart-container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        canvas {
-            width: 100% !important;
-            height: 300px !important;
-        }
-    </style>
-
-}
-
-

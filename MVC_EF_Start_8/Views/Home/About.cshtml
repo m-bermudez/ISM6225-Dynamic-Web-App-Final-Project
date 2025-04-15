@@ -1,51 +1,68 @@
 ﻿@{
-    ViewBag.Title = "About Us";
-    Layout = "_Layout"; // Reference to your layout
+    ViewData["Title"] = "About Us";
+    Layout = "_Layout";
 }
 
+<section class="intro">
+    <h2>About Our Team</h2>
+    <p>Meet the talented individuals behind Auto Market and learn about our data model.</p>
+</section>
 
-<h2>About Us</h2>
+<section class="team-section">
+    <h3>Our Team</h3>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="~/images/alvaro.jfif" alt="Alice Smith" />
+            <h4>Alice Smith</h4>
+            <p><strong>Role:</strong> Project Manager</p>
+            <p>Oversaw project progress and managed tasks.</p>
+        </div>
+        <div class="team-member">
+            <img src="~/images/mauricio.jfif" alt="Bob Johnson" />
+            <h4>Bob Johnson</h4>
+            <p><strong>Role:</strong> Backend Developer</p>
+            <p>Built MVC controllers and handled database logic.</p>
+        </div>
+        <div class="team-member">
+            <img src="~/images/marta.jfif" alt="Carol Davis" />
+            <h4>Carol Davis</h4>
+            <p><strong>Role:</strong> Frontend Developer</p>
+            <p>Designed and implemented UI using Razor views.</p>
+        </div>
+        <div class="team-member">
+            <img src="~/images/ryan.jfif" alt="Dan Lee" />
+            <h4>Dan Lee</h4>
+            <p><strong>Role:</strong> QA & Deployment</p>
+            <p>Handled testing and deployed the final app.</p>
+        </div>
+    </div>
+</section>
 
-<div class="team-grid">
-    <div class="team-member">
-        <img src="~/images/alvaro.jfif" alt="Alice" />
-        <h4>Alice Smith</h4>
-        <p><strong>Role:</strong> Project Manager</p>
-        <p><strong>Contributions:</strong> Oversaw project progress and managed tasks.</p>
-    </div>
-    <div class="team-member">
-        <img src="~/images/mauricio.jfif" alt="Bob" />
-        <h4>Bob Johnson</h4>
-        <p><strong>Role:</strong> Backend Developer</p>
-        <p><strong>Contributions:</strong> Built MVC controllers and handled database logic.</p>
-    </div>
-    <div class="team-member">
-        <img src="~/images/marta.jfif" alt="Carol" />
-        <h4>Carol Davis</h4>
-        <p><strong>Role:</strong> Frontend Developer</p>
-        <p><strong>Contributions:</strong> Designed and implemented UI using Razor views.</p>
-    </div>
-    <div class="team-member">
-        <img src="~/images/ryan.jfif" alt="Dan" />
-        <h4>Dan Lee</h4>
-        <p><strong>Role:</strong> QA & Deployment</p>
-        <p><strong>Contributions:</strong> Handled testing and deployed the final app.</p>
-    </div>
-</div>
-
-<hr />
-
-<div class="model-section">
+<section class="model-section">
     <h3>Logical Data Model</h3>
-    <img src="~/images/logical-model.png" alt="Logical Data Model" style="max-width:100%; height:auto;" />
-</div>
+    <img src="~/images/logical-model.png" alt="Logical Data Model" class="model-image" />
+</section>
 
-<hr />
-
-<div class="github-section">
+<section class="github-section">
     <h3>GitHub Repository</h3>
-    <p>
-        View our code on GitHub:
-        <a href="https://github.com/YourRepoLinkHere" target="_blank">GitHub Repository</a>
-    </p>
-</div>
+    <a href="https://github.com/YourRepoLinkHere" class="btn" target="_blank">View on GitHub</a>
+</section>
+
+@section Styles {
+    <style>
+        .team-section, .model-section, .github-section {
+            background-color: var(--usf-white);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .model-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+}

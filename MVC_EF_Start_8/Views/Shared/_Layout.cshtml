@@ -1,53 +1,41 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Auto Market</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <title>@ViewData["Title"] - App Dev Group 4 Dynamic Web Page</title>
     @RenderSection("Styles", required: false)
 </head>
 <body>
     <header class="header">
-        <h1>Group 4</h1>
+        <h1>Auto Market</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <!--<li><a asp-controller="Home" asp-action="About">About</a></li> -->
-
-
-    <div class="header">
-        <h1>My Site</h1>
-        <nav>
-            <ul>
-                <!-- Corrected hrefs to use asp-page for Razor Pages -->
-                <li><a asp-page="/Index">Home</a></li>
-                <li><a asp-page="/About">About</a></li>
-                <li><a asp-page="/Cru">CRU</a></li>
-            </ul>
-        </nav>
-    </div>
 
     <nav>
         <ul>
             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
             <li><a asp-controller="Home" asp-action="About">About Us</a></li>
             <li><a asp-controller="Home" asp-action="DataVisualization">Data Visualization</a></li>
-            <!-- Add more navigation items as needed -->
+            <li><a asp-controller="Home" asp-action="Create">Create</a></li>
+            <li><a asp-controller="Home" asp-action="Read">Read</a></li>
+            <li><a asp-controller="Home" asp-action="Update">Update</a></li>
+            <li><a asp-controller="Home" asp-action="Delete">Delete</a></li>
         </ul>
     </nav>
-
 
     <main class="body-content">
         @RenderBody()
     </main>
 
     <footer class="footer">
-        <p>&copy; @DateTime.Now.Year - Dynamic Application</p>
-        <p>Contact: <a href="mailto:bermudezm@usf.edu">bermudezm@usf.edu</a> <a href="mailto:martaf@usf.edu">martaf@usf.edu</a> <a href="mailto:montoyaruiz@usf.edu">montoyaruiz@usf.edu</a> <a href="mailto:stopczynski@usf.edu">stopczynski@usf.edu</a></p>
+        <p>&copy; @DateTime.Now.Year - Auto Market</p>
+        <p>Contact: 
+            <a href="mailto:contact@automarket.com">contact@automarket.com</a>
+        </p>
     </footer>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
