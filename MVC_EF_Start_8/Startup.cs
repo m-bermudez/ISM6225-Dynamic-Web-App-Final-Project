@@ -38,7 +38,7 @@ namespace MVC_EF_Start_8
             logger.LogInformation($"Using Connection String: {connectionString}");
 
             // Database initialization with improved error handling
-            try 
+            try
             {
                 using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
                 {
