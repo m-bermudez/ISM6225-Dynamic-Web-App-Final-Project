@@ -1,29 +1,41 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - The Nuclear Dashboard</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
+    <header class="header">
+        <h1>The Nuclear Dashboard</h1>
+    </header>
 
-    <div class="header">
-        <h1>My Site</h1>
-        <nav>
-            <ul>
-                <!-- Corrected hrefs to use asp-page for Razor Pages -->
-                <li><a asp-page="/Index">Home</a></li>
-                <li><a asp-page="/About">About</a></li>
-                <li><a asp-page="/Cru">CRU</a></li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+            <li><a asp-controller="Home" asp-action="DataVisualization">Data Visualization</a></li>
+            <li><a asp-controller="Home" asp-action="Create">Create</a></li>
+            <li><a asp-controller="Home" asp-action="Read">Read</a></li>
+            <li><a asp-controller="Home" asp-action="Update">Update</a></li>
+            <li><a asp-controller="Home" asp-action="Delete">Delete</a></li>
+        </ul>
+    </nav>
 
-    <div class="body-content">
+    <main class="body-content">
         @RenderBody()
-    </div>
+    </main>
 
-    <div class="footer">
-        Footer goes here
-    </div>
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year - The Nuclear Dashboard</p>
+        <p>Contact: 
+            <a href="mailto:contact@automarket.com">contact@thenucleardashboard.com</a>
+        </p>
+    </footer>
 
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

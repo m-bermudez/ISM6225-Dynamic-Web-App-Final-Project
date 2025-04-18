@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MVC_EF_Start_8.DataAccess;
-// https://stackoverflow.com/a/58072137/1385857
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace MVC_EF_Start_8
 {
@@ -18,34 +19,44 @@ namespace MVC_EF_Start_8
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setup EF connection
-            // https://stackoverflow.com/a/43098152/1385857
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:IEXTrading:ConnectionString"]));
+            // Setup EF connection with the correct configuration key
+            services.AddDbContext<ApplicationDbContext>(options => 
+                options.UseSqlServer(Configuration["Data:IEXTradingAzure:ConnectionString"]));
 
-            // added from MVC template
-            //services.AddMvc();
-            // https://stackoverflow.com/a/58772555/1385857
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
-        // this is the version from the MVC template
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //This ensures that the database and tables are created as per the Models.
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            // Get logger instance early for configuration verification
+            var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
+            
+            // Verify connection string is loaded correctly
+            var connectionString = Configuration["Data:IEXTrading:ConnectionString"];
+            logger.LogInformation($"Using Connection String: {connectionString}");
+
+            // Database initialization with improved error handling
+            try
             {
-                var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                context.Database.EnsureCreated();
+                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    logger.LogInformation("Attempting to connect to database...");
+                    context.Database.EnsureCreated();
+                    logger.LogInformation("✅ Database connection successful!");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "❌ Database connection failed!");
+                throw; // Fail startup if DB connection fails
             }
 
-            // https://stackoverflow.com/a/58072137/1385857
+            // Configure HTTP request pipeline
             if (env.IsDevelopment())
             {
-                //app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -58,8 +69,8 @@ namespace MVC_EF_Start_8
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-              name: "default",
-              template: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
