@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h2>Add a New Nuclear Outage</h2>
+
+<form>
+    <div>
+        <label for="plantName">Plant Name:</label>
+        <input type="text" id="plantName" name="plantName" required />
+    </div>
+
+    <div>
+        <label for="startDate">Outage Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required />
+    </div>
+
+    <div>
+        <label for="endDate">Outage End Date:</label>
+        <input type="date" id="endDate" name="endDate" required />
+    </div>
+
+    <div>
+        <label for="reason">Reason:</label>
+        <textarea id="reason" name="reason"></textarea>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
