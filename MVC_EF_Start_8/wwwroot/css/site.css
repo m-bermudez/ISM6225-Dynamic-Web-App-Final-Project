@@ -245,6 +245,32 @@ canvas {
 }
 
 /* ----------
+   Table Styling 
+   ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: var(--usf-white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 12px 18px; /* Add horizontal and vertical spacing */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead {
+    background-color: var(--usf-light-green);
+    color: var(--usf-white);
+}
+
+tr:nth-child(even) {
+    background-color: var(--usf-light-gray);
+}
+
+/* ----------
    Responsive Design 
    ---------- */
 @media (max-width: 768px) {
