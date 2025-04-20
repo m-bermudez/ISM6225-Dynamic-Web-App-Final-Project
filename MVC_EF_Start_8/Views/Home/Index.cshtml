@@ -21,14 +21,23 @@
 <section class="quick-links">
     <h3>Get Started</h3>
     <div class="link-grid">
+        <a asp-controller="Home" asp-action="About" class="btn">
+            <i class="fas fa-users"></i> Meet Our Team
+        </a>
         <a asp-controller="Home" asp-action="DataVisualization" class="btn">
             <i class="fas fa-chart-bar"></i> View Charts
         </a>
         <a asp-controller="Home" asp-action="Create" class="btn">
             <i class="fas fa-plus"></i> Add Nuclear Outage
         </a>
-        <a asp-controller="Home" asp-action="About" class="btn">
-            <i class="fas fa-users"></i> Meet Our Team
+        <a asp-controller="Home" asp-action="Read" class="btn">
+            <i class="fas fa-database"></i> View Outages
+        </a>
+        <a asp-controller="Home" asp-action="Update" class="btn">
+            <i class="fas fa-edit"></i> Update Outage
+        </a>
+        <a asp-controller="Home" asp-action="Delete" class="btn">
+            <i class="fas fa-trash"></i> Delete Outage
         </a>
     </div>
 </section>
@@ -55,14 +64,15 @@
             border: 2px solid var(--usf-green);
             color: var(--usf-green);
         }
-        
+
         .btn-outline:hover {
             background: var(--usf-green);
             color: white;
         }
-        
+    
         .fas {
             margin-right: 8px;
         }
     </style>
 }
+
