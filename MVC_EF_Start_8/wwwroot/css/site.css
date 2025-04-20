@@ -156,32 +156,95 @@ nav ul li a:hover {
     top: 0;
 }
 
-/* Team Section */
-.team-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    gap: 20px;
-}
 
-.team-member {
-    flex: 1 1 200px;
-    max-width: 220px;
+/* Team Section */
+.team-section {
+    padding: 2rem 1rem;
+    background-color: #f9f9f9;
     text-align: center;
 }
 
-.team-member img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    .team-section h3 {
+        font-size: 2rem;
+        color: #1a3c34;
+        margin-bottom: 2rem;
+    }
+
+/* Team Grid Layout */
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
 }
 
-.team-member h4 {
-    margin-top: 10px;
-    margin-bottom: 5px;
+/* Team Member Card */
+.team-member {
+    flex: 1 1 250px;
+    max-width: 300px;
+    min-width: 250px;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
 }
+
+    /* Team Member Image */
+    .team-member img {
+        width: 100%;
+        max-width: 160px;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        object-fit: cover;
+    }
+
+    /* Team Member Name */
+    .team-member h4 {
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+        color: #1a3c34;
+    }
+
+/* Role */
+.role {
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+/* Information that grows with space */
+.member-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Contributions Section */
+.contributions {
+    margin-top: auto;
+    text-align: left;
+    width: 100%;
+}
+
+    .contributions p {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .contributions ul {
+        list-style-type: disc;
+        padding-left: 1.25rem;
+        color: #333;
+        margin: 0;
+    }
 
 /* ----------
    UI Components 

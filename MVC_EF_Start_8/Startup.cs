@@ -7,6 +7,7 @@ using MVC_EF_Start_8.DataAccess;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.Extensions.Options;
 
 namespace MVC_EF_Start_8
 {
@@ -23,6 +24,7 @@ namespace MVC_EF_Start_8
         {
             // Setup EF connection with the correct configuration key
             services.AddDbContext<ApplicationDbContext>(options => 
+                //options.UseSqlServer(Configuration["Data:IEXTradingAzure:ConnectionString"]));
                 options.UseSqlServer(Configuration["Data:IEXTrading:ConnectionString"]));
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
