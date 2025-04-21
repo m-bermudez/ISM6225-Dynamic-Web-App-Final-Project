@@ -25,7 +25,7 @@ namespace MVC_EF_Start_8
             // Setup EF connection with the correct configuration key
             services.AddDbContext<ApplicationDbContext>(options => 
                 //options.UseSqlServer(Configuration["Data:IEXTradingAzure:ConnectionString"]));
-                options.UseSqlServer(Configuration["Data:IEXTrading:ConnectionString"]));
+                options.UseSqlServer(Configuration["Data:IEXTradingAzure:ConnectionString"]));
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
