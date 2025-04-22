@@ -13,8 +13,8 @@ namespace DATAGOV_API_INTRO_8.Controllers
         private readonly HttpClient _httpClient;
 
         // API Base URL and API Key
-        static string BASE_URL = "https://developer.nps.gov/api/v1";
-        static string API_KEY =  "8HdmDFTNjPhuhhCueqaXRZDlear5aMZO4W9Q5pU9"; //"mdBybOievMdeX3eYSC0MhFu3U7xRV18xHAPG04qb";
+        static string BASE_URL = "https://api.eia.gov/v2/";
+        static string API_KEY = "10Cb31KivaDpOJGrdIbAq8gUsF2Mq0kNMWQQzygT";
 
         public HomeController(ParksService parksService)
         {
@@ -31,7 +31,7 @@ namespace DATAGOV_API_INTRO_8.Controllers
             if (!_parksService.IsDataFetched())
             {
                 Console.WriteLine("Fetching data from API...");
-                string apiPath = $"{BASE_URL}/parks?limit=20&api_key={API_KEY}";
+                string apiPath = $"{BASE_URL}nuclear-outages/generator-nuclear-outages/data/?api_key={API_KEY}";
 
                 HttpResponseMessage response = await _httpClient.GetAsync(apiPath);
                 Console.WriteLine($"API response status code: {response.StatusCode}");
