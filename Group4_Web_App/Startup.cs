@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MVC_EF_Start_8.DataAccess;
+using Group4_Web_App.DataAccess;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.Extensions.Options;
 
-namespace MVC_EF_Start_8
+namespace Group4_Web_App
 {
     public class Startup
     {

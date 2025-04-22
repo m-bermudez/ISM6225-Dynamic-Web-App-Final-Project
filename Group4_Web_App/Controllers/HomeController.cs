@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MVC_EF_Start_8.DataAccess;
-using MVC_EF_Start_8.Models;
+using Group4_Web_App.DataAccess;
+using Group4_Web_App.Models;
 
 
 namespace MVC_EF_Start_8.Controllers

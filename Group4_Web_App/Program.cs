@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace MVC_EF_Start_8
+namespace Group4_Web_App
 {
     public class Program
     {
