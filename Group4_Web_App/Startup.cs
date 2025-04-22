@@ -36,7 +36,7 @@ namespace MVC_EF_Start_8
             var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
             
             // Verify connection string is loaded correctly
-            var connectionString = Configuration["Data:IEXTrading:ConnectionString"];
+            var connectionString = Configuration["Data:IEXTradingAzure:ConnectionString"];
             logger.LogInformation($"Using Connection String: {connectionString}");
 
             // Database initialization with improved error handling
