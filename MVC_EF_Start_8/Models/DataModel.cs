@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Group4_Web_App.Models
+namespace Group4MVC_EF_Start_8_Web_App.Models
 {
     public class Park
     {

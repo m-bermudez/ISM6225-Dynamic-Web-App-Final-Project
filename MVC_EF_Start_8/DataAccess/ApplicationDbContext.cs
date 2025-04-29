@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Group4_Web_App.Models;
+using MVC_EF_Start_8.Models;
 
-namespace Group4_Web_App.DataAccess
+namespace MVC_EF_Start_8.DataAccess
 {
   public class ApplicationDbContext : DbContext
   {

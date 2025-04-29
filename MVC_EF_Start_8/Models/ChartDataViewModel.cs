@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Group4_Web_App.Models
+namespace MVC_EF_Start_8.Models
 {
     public class ChartDataViewModel
     {
