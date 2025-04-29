@@ -24,7 +24,7 @@ namespace Group4_Web_App
 
             // Register NuclearOutageService with proper lifecycle
             // Scoped is typically better for services that hold state per request
-            builder.Services.AddScoped<NuclearOutageService>();
+            builder.Services.AddSingleton<NuclearOutageService>();
 
             // Add logging
             builder.Logging.ClearProviders();

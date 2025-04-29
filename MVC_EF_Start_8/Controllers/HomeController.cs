@@ -7,6 +7,7 @@ using MVC_EF_Start_8.Models;
 using MVC_EF_Start_8.Services;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace MVC_EF_Start_8.Controllers
 {
@@ -48,35 +49,147 @@ namespace MVC_EF_Start_8.Controllers
                     {
                         await _nuclearOutageService.AddOutagesAsync(apiData.response.data);
                         _nuclearOutageService.MarkDataAsFetched();
+                        _logger.LogInformation("Added {0} outages to the service.", apiData.response.data.Count);
                     }
+                    else
+                    {
+                        _logger.LogWarning("API returned null or empty data.");
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("API request failed: {0}", response.StatusCode);
                 }
             }
 
             var outagesList = await _nuclearOutageService.GetAllOutagesAsync();
+            _logger.LogInformation("Outages List Count after fetch: {0}", outagesList.Count);
             return View(outagesList);
         }
 
         public async Task<IActionResult> DataVisualization()
         {
-            try
+            if (!_nuclearOutageService.IsDataFetched())
             {
+                _logger.LogInformation("Fetching data from API...");
                 HttpResponseMessage response = await _httpClient.GetAsync(apiPath);
+
                 if (response.IsSuccessStatusCode)
                 {
-                    string jsonResult = await response.Content.ReadAsStringAsync();
-                    Root apiData = JsonConvert.DeserializeObject<Root>(jsonResult);
+                    string outageData = await response.Content.ReadAsStringAsync();
+                    Root apiData = JsonConvert.DeserializeObject<Root>(outageData);
 
-                    return View(apiData?.response?.data ?? new List<OutageRecord>());
+                    if (apiData?.response?.data != null)
+                    {
+                        await _nuclearOutageService.AddOutagesAsync(apiData.response.data);
+                        _nuclearOutageService.MarkDataAsFetched();
+                        _logger.LogInformation("Added {0} outages to the service (DataVisualization).", apiData.response.data.Count);
+                    }
+                    else
+                    {
+                        _logger.LogWarning("API returned null or empty data (DataVisualization).");
+                    }
                 }
-                ViewBag.ApiError = $"API request failed: {response.StatusCode}";
+                else
+                {
+                    _logger.LogWarning("API request failed (DataVisualization): {0}", response.StatusCode);
+                }
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Exception during API call");
-                ViewBag.ApiError = ex.Message;
-            }
-            return View(new List<OutageRecord>());
+
+            var outagesList = await _nuclearOutageService.GetAllOutagesAsync();
+            _logger.LogInformation("Outages List Count in DataVisualization: {0}", outagesList.Count);
+            return View(outagesList);
         }
+
+        public async Task<IActionResult> GetChartData()
+        {
+            var outagesList = await _nuclearOutageService.GetAllOutagesAsync();
+            _logger.LogInformation("Fetched Outages List Count for Chart: {0}", outagesList.Count);
+
+            var facilityRegionMap = FacilityRegionMap.Regions;
+
+            var dailyOutageMap = new Dictionary<string, int>();
+            var generatorOutageMap = new Dictionary<string, int>();
+            var generatorFrequencyMap = new Dictionary<string, int>();
+
+            foreach (var outage in outagesList)
+            {
+                _logger.LogInformation("period={0}, facilityName={1}, outage={2}", outage.period, outage.facilityName, outage.outage);
+
+                string period = outage.period;
+
+                if (double.TryParse(outage.outage, out double outageVal))
+                {
+                    int outageValue = (int)Math.Round(outageVal);
+
+                    if (outageValue > 0 && !string.IsNullOrWhiteSpace(outage.facilityName))
+                    {
+                        if (!dailyOutageMap.ContainsKey(period))
+                            dailyOutageMap[period] = 0;
+                        dailyOutageMap[period] += outageValue;
+
+                        string rawName = outage.facilityName.Trim();
+                        string region = "Unknown";
+
+                        if (facilityRegionMap.TryGetValue(rawName, out var exactRegion))
+                        {
+                            region = exactRegion;
+                        }
+                        else
+                        {
+                            var fallbackMatch = facilityRegionMap.FirstOrDefault(kvp => rawName.Contains(kvp.Key));
+                            if (!string.IsNullOrWhiteSpace(fallbackMatch.Key))
+                            {
+                                region = fallbackMatch.Value;
+                            }
+                        }
+
+                        string label = $"{rawName} ({region})";
+
+                        if (!generatorOutageMap.ContainsKey(label))
+                            generatorOutageMap[label] = 0;
+                        generatorOutageMap[label] += outageValue;
+
+                        if (!generatorFrequencyMap.ContainsKey(label))
+                            generatorFrequencyMap[label] = 0;
+                        generatorFrequencyMap[label]++;
+                    }
+                }
+            }
+
+            var sortedDailyOutages = dailyOutageMap.OrderBy(kv => kv.Key).ToList();
+            var sortedTopGeneratorOutages = generatorOutageMap
+                .OrderByDescending(kv => kv.Value)
+                .Take(10)
+                .ToList();
+            var sortedTopGeneratorFrequencies = generatorFrequencyMap
+                .OrderByDescending(kv => kv.Value)
+                .Take(10)
+                .ToList();
+
+            var response = new
+            {
+                dailyOutages = new
+                {
+                    labels = sortedDailyOutages.Select(kv => kv.Key).ToList(),
+                    values = sortedDailyOutages.Select(kv => kv.Value).ToList()
+                },
+                generatorOutages = new
+                {
+                    labels = sortedTopGeneratorOutages.Select(kv => kv.Key).ToList(),
+                    values = sortedTopGeneratorOutages.Select(kv => kv.Value).ToList()
+                },
+                generatorFrequency = new
+                {
+                    labels = sortedTopGeneratorFrequencies.Select(kv => kv.Key).ToList(),
+                    values = sortedTopGeneratorFrequencies.Select(kv => kv.Value).ToList()
+                }
+            };
+
+            _logger.LogInformation("Returning chart data JSON: {0}", JsonConvert.SerializeObject(response));
+            return Json(response);
+        }
+
 
         public IActionResult About() => View();
         public IActionResult Create() => View();
