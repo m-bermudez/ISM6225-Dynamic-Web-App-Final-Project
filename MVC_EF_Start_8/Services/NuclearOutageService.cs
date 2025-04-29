@@ -23,9 +23,70 @@ namespace MVC_EF_Start_8.Services
             return await Task.FromResult(_outageData);
         }
 
-        public async Task<List<OutageRecord>> GetOutageDataByPeriodAsync(string period)
+        public async Task<List<OutageRecord>> GetLatestOutagesAsync(int count)
         {
-            return await Task.FromResult(_outageData.Where(d => d.period == period).ToList());
+            return await Task.FromResult(_outageData
+                .OrderByDescending(d => d.period)
+                .Take(count)
+                .ToList());
+        }
+
+        public async Task<OutageRecord> GetOutageByFacilityAsync(string facility)
+        {
+            return await Task.FromResult(
+                _outageData.FirstOrDefault(r => r.facility == facility));
+        }
+
+        public async Task<List<OutageRecord>> SearchOutagesAsync(string query)
+        {
+            return await Task.FromResult(
+                _outageData
+                .Where(r => r.facility.Contains(query) || r.facilityName.Contains(query))
+                .ToList());
+        }
+
+        public async Task AddOutageAsync(OutageRecord record)
+        {
+            await Task.Run(() =>
+            {
+                if (!_outageData.Any(r => r.facility == record.facility))
+                {
+                    _outageData.Add(record);
+                }
+            });
+        }
+
+        public async Task<bool> UpdateOutageAsync(OutageRecord updatedRecord)
+        {
+            return await Task.Run(() =>
+            {
+                var existing = _outageData.FirstOrDefault(r => r.facility == updatedRecord.facility);
+                if (existing != null)
+                {
+                    existing.period = updatedRecord.period;
+                    existing.facilityName = updatedRecord.facilityName;
+                    existing.generator = updatedRecord.generator;
+                    existing.capacity = updatedRecord.capacity;
+                    existing.outage = updatedRecord.outage;
+                    existing.percentOutage = updatedRecord.percentOutage;
+                    return true;
+                }
+                return false;
+            });
+        }
+
+        public async Task<bool> DeleteOutageAsync(string facility)
+        {
+            return await Task.Run(() =>
+            {
+                var record = _outageData.FirstOrDefault(r => r.facility == facility);
+                if (record != null)
+                {
+                    _outageData.Remove(record);
+                    return true;
+                }
+                return false;
+            });
         }
     }
 }

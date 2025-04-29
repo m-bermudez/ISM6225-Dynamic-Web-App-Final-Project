@@ -1,21 +1,16 @@
-﻿@{
+﻿@model MVC_EF_Start_8.Models.OutageRecord
+
+@{
     ViewData["Title"] = "Delete";
     Layout = "_Layout";
 }
 
-<h2>Delete Outage</h2>
+<h2>Confirm Deletion</h2>
 
-<p>Are you sure you want to delete the following outage?</p>
+<p>Are you sure you want to delete the outage for facility: <strong>@Model.facility</strong>?</p>
 
-<ul>
-    <li><strong>Plant:</strong> Example Plant A</li>
-    <li><strong>Start Date:</strong> 2025-04-01</li>
-    <li><strong>End Date:</strong> 2025-04-15</li>
-    <li><strong>Reason:</strong> Scheduled Maintenance</li>
-</ul>
-
-<form>
-    <button type="submit">Confirm Delete</button>
-    <button type="submit">Cancel</button>
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="facility" />
+    <button type="submit">Yes, Delete</button>
+    <a asp-action="Read">Cancel</a>
 </form>
-

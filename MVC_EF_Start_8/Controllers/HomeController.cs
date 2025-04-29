@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVC_EF_Start_8.Models;
 using MVC_EF_Start_8.Services;
-using System.Net.Http;
 using Newtonsoft.Json;
-using System.Linq;
 
 namespace MVC_EF_Start_8.Controllers
 {
@@ -67,6 +67,90 @@ namespace MVC_EF_Start_8.Controllers
             return View(outagesList);
         }
 
+        public async Task<IActionResult> Read(string searchFacility)
+        {
+            var outages = await _nuclearOutageService.GetAllOutagesAsync();
+
+            if (!string.IsNullOrEmpty(searchFacility))
+            {
+                outages = outages
+                    .Where(o => o.facility != null && o.facility.Contains(searchFacility, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            // Sort by period descending and take the most recent 100 records
+            outages = outages
+                .Where(o => DateTime.TryParse(o.period, out _))
+                .OrderByDescending(o => DateTime.Parse(o.period))
+                .Take(100)
+                .ToList();
+
+            return View(outages);
+        }
+
+        public IActionResult Create() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Create(OutageRecord record)
+        {
+            if (ModelState.IsValid)
+            {
+                await _nuclearOutageService.AddOutagesAsync(new List<OutageRecord> { record });
+                return RedirectToAction("Read");
+            }
+            return View(record);
+        }
+
+        public async Task<IActionResult> Update(string facility)
+        {
+            var record = (await _nuclearOutageService.GetAllOutagesAsync())
+                .FirstOrDefault(r => r.facility == facility);
+
+            if (record == null)
+            {
+                return NotFound();
+            }
+
+            return View(record);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(OutageRecord updatedRecord)
+        {
+            var result = await _nuclearOutageService.UpdateOutageAsync(updatedRecord);
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Read");
+        }
+
+        public async Task<IActionResult> Delete(string facility)
+        {
+            var record = (await _nuclearOutageService.GetAllOutagesAsync())
+                .FirstOrDefault(r => r.facility == facility);
+
+            if (record == null)
+            {
+                return NotFound();
+            }
+
+            return View(record);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(string facility)
+        {
+            var result = await _nuclearOutageService.DeleteOutageAsync(facility);
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Read");
+        }
+
         public async Task<IActionResult> DataVisualization()
         {
             if (!_nuclearOutageService.IsDataFetched())
@@ -114,8 +198,6 @@ namespace MVC_EF_Start_8.Controllers
 
             foreach (var outage in outagesList)
             {
-                _logger.LogInformation("period={0}, facilityName={1}, outage={2}", outage.period, outage.facilityName, outage.outage);
-
                 string period = outage.period;
 
                 if (double.TryParse(outage.outage, out double outageVal))
@@ -129,30 +211,14 @@ namespace MVC_EF_Start_8.Controllers
                         dailyOutageMap[period] += outageValue;
 
                         string rawName = outage.facilityName.Trim();
-                        string region = "Unknown";
-
-                        if (facilityRegionMap.TryGetValue(rawName, out var exactRegion))
-                        {
-                            region = exactRegion;
-                        }
-                        else
-                        {
-                            var fallbackMatch = facilityRegionMap.FirstOrDefault(kvp => rawName.Contains(kvp.Key));
-                            if (!string.IsNullOrWhiteSpace(fallbackMatch.Key))
-                            {
-                                region = fallbackMatch.Value;
-                            }
-                        }
+                        string region = facilityRegionMap.TryGetValue(rawName, out var exactRegion)
+                            ? exactRegion
+                            : facilityRegionMap.FirstOrDefault(kvp => rawName.Contains(kvp.Key)).Value ?? "Unknown";
 
                         string label = $"{rawName} ({region})";
 
-                        if (!generatorOutageMap.ContainsKey(label))
-                            generatorOutageMap[label] = 0;
-                        generatorOutageMap[label] += outageValue;
-
-                        if (!generatorFrequencyMap.ContainsKey(label))
-                            generatorFrequencyMap[label] = 0;
-                        generatorFrequencyMap[label]++;
+                        generatorOutageMap[label] = generatorOutageMap.GetValueOrDefault(label) + outageValue;
+                        generatorFrequencyMap[label] = generatorFrequencyMap.GetValueOrDefault(label) + 1;
                     }
                 }
             }
@@ -191,20 +257,9 @@ namespace MVC_EF_Start_8.Controllers
                 }
             };
 
-            _logger.LogInformation("Returning chart data JSON: {0}", JsonConvert.SerializeObject(response));
             return Json(response);
         }
 
-
         public IActionResult About() => View();
-        public IActionResult Create() => View();
-        public IActionResult Update() => View();
-        public IActionResult Delete() => View();
-
-        public async Task<IActionResult> Read()
-        {
-            var outages = await _nuclearOutageService.GetAllOutagesAsync();
-            return View(outages);
-        }
     }
 }

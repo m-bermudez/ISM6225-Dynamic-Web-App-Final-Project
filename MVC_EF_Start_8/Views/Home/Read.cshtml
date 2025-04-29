@@ -1,32 +1,49 @@
-﻿@{
+﻿@model List<MVC_EF_Start_8.Models.OutageRecord>
+@{
     ViewData["Title"] = "Read";
     Layout = "_Layout";
 }
 
 <h2>Existing Nuclear Outages</h2>
 
-<table>
+<div style="margin-bottom: 20px;">
+    <a asp-action="Create" class="btn btn-primary">Create New Record</a>
+</div>
+
+<form asp-action="Read" method="get" style="margin-bottom: 20px;">
+    <input type="text" name="searchFacility" placeholder="Enter facility to search..." value="@Context.Request.Query["searchFacility"]" />
+    <button type="submit" class="btn btn-secondary">Search</button>
+</form>
+
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th>Plant</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Reason</th>
+            <th>Facility</th>
+            <th>Facility Name</th>
+            <th>Period</th>
+            <th>Generator</th>
+            <th>Capacity</th>
+            <th>Outage</th>
+            <th>% Outage</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Example Plant A</td>
-            <td>2025-04-01</td>
-            <td>2025-04-15</td>
-            <td>Scheduled Maintenance</td>
-        </tr>
-        <tr>
-            <td>Example Plant B</td>
-            <td>2025-03-20</td>
-            <td>2025-04-05</td>
-            <td>Emergency Shutdown</td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.facility</td>
+                <td>@item.facilityName</td>
+                <td>@item.period</td>
+                <td>@item.generator</td>
+                <td>@item.capacity</td>
+                <td>@item.outage</td>
+                <td>@item.percentOutage</td>
+                <td>
+                    <a asp-action="Update" asp-route-facility="@item.facility" class="btn btn-warning btn-sm">Update</a>
+                    <a asp-action="Delete" asp-route-facility="@item.facility" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-

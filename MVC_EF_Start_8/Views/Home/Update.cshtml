@@ -1,29 +1,43 @@
-﻿﻿@{
+﻿@model MVC_EF_Start_8.Models.OutageRecord
+
+@{
     ViewData["Title"] = "Update";
     Layout = "_Layout";
 }
 
 <h2>Update Outage Details</h2>
 
-<form>
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="facility" />
+
     <div>
-        <label for="plantName">Plant Name:</label>
-        <input type="text" id="plantName" name="plantName" value="Example Plant A" required />
+        <label asp-for="period">Period:</label>
+        <input asp-for="period" type="date" required />
     </div>
 
     <div>
-        <label for="startDate">Outage Start Date:</label>
-        <input type="date" id="startDate" name="startDate" value="2025-04-01" required />
+        <label asp-for="facilityName">Facility Name:</label>
+        <input asp-for="facilityName" required />
     </div>
 
     <div>
-        <label for="endDate">Outage End Date:</label>
-        <input type="date" id="endDate" name="endDate" value="2025-04-15" required />
+        <label asp-for="generator">Generator:</label>
+        <input asp-for="generator" />
     </div>
 
     <div>
-        <label for="reason">Reason:</label>
-        <textarea id="reason" name="reason">Scheduled Maintenance</textarea>
+        <label asp-for="capacity">Capacity:</label>
+        <input asp-for="capacity" />
+    </div>
+
+    <div>
+        <label asp-for="outage">Outage:</label>
+        <input asp-for="outage" />
+    </div>
+
+    <div>
+        <label asp-for="percentOutage">Percent Outage:</label>
+        <input asp-for="percentOutage" />
     </div>
 
     <button type="submit">Save Changes</button>
