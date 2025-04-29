@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using MVC_EF_Start_8.Services; // Make sure this namespace is correct
 using MVC_EF_Start_8.DataAccess;  // Add this line for ApplicationDbContext
 
-namespace MVC_EF_Start_8
+namespace Group4_Web_App
 {
     public class Startup
     {

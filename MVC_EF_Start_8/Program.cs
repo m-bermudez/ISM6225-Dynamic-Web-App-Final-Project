@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using MVC_EF_Start_8.Services;
 using System;
 
-namespace MVC_EF_Start_8
+namespace Group4_Web_App
 {
     public class Program
     {
@@ -24,7 +24,7 @@ namespace MVC_EF_Start_8
 
             // Register NuclearOutageService with proper lifecycle
             // Scoped is typically better for services that hold state per request
-            builder.Services.AddScoped<NuclearOutageService>();
+            builder.Services.AddSingleton<NuclearOutageService>();
 
             // Add logging
             builder.Logging.ClearProviders();

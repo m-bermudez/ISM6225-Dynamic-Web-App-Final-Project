@@ -1,4 +1,4 @@
-@model MVC_EF_Start_8.Models.ChartDataViewModel
+@model List<MVC_EF_Start_8.Models.OutageRecord>
 @{
     ViewData["Title"] = "Data Visualization Dashboard";
     Layout = "_Layout";
@@ -10,17 +10,17 @@
 </section>
 
 <div class="chart-container">
-    <h3>Bar Chart Example</h3>
-    <canvas id="barChart"></canvas>
+    <h3>Daily Nuclear Outage (Last 30 Days in MW)</h3>
+    <canvas id="lineChart"></canvas>
 </div>
 
 <div class="chart-row">
     <div class="chart-container">
-        <h3>Line Chart Example</h3>
-        <canvas id="lineChart"></canvas>
+        <h3>Total Outage by Generator (MW)</h3>
+        <canvas id="barChart"></canvas>
     </div>
     <div class="chart-container">
-        <h3>Pie Chart Example</h3>
+        <h3>Frequency of Outages</h3>
         <canvas id="pieChart"></canvas>
     </div>
 </div>
@@ -41,25 +41,4 @@
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Bar Chart
-            new Chart(
-                document.getElementById('barChart').getContext('2d'),
-                {
-                    type: 'bar',
-                    data: {
-                        labels: @Html.Raw(Json.Serialize(Model.Labels)),
-                        datasets: [{
-                            label: '@Model.DataSetLabel',
-                            data: @Html.Raw(Json.Serialize(Model.Values)),
-                            backgroundColor: '#00543C'
-                        }]
-                    }
-                }
-            );
-
-            // Additional chart implementations...
-        });
-    </script>
 }
