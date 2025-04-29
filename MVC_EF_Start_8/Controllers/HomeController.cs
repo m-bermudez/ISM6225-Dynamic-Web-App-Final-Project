@@ -157,7 +157,12 @@ namespace MVC_EF_Start_8.Controllers
                 }
             }
 
-            var sortedDailyOutages = dailyOutageMap.OrderBy(kv => kv.Key).ToList();
+            var last30Days = DateTime.Today.AddDays(-30);
+            var sortedDailyOutages = dailyOutageMap
+                .Where(kv => DateTime.TryParse(kv.Key, out var date) && date >= last30Days)
+                .OrderBy(kv => DateTime.Parse(kv.Key))
+                .ToList();
+
             var sortedTopGeneratorOutages = generatorOutageMap
                 .OrderByDescending(kv => kv.Value)
                 .Take(10)
