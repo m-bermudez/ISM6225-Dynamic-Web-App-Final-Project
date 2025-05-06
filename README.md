@@ -13,14 +13,16 @@
     ```
 
 Putting it all together:
+
 `https://api.eia.gov/v2/nuclear-outages/generator-nuclear-outages/data/?frequency=daily&data[0]=capacity&data[1]=outage&data[2]=percentOutage&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=YOUR_API_KEY`
+
 Key Components
 - Base URL: The root URL for the EIA's API.  It's the foundation for accessing any of their data services.   
 - API Key: A unique key `(10Cb31KivaDpOJGrdIbAq8gUsF2Mq0kNMWQQzygT)` is used to authenticate requests to the EIA API. You will need to obtain your own API key from the EIA to use the API.   
 - EIA: The U.S. Energy Information Administration (EIA) is a principal agency of the U.S. Federal Statistical System responsible for collecting, analyzing, and disseminating energy information to support public policy-making, efficient markets, and public understanding of energy and its interaction with the economy and the environment.
 
 ## Data model (updated ERD diagram)
-
+![Updated ERD for Group 4 Project](https://raw.githubusercontent.com/m-bermudez/ISM6225-Dynamic-Web-App-Final-Project/refs/heads/main/OutagesERD.png)!
 ## Overview of CRUD implementation
 
 ## Notable technical challenges and solutions
