@@ -22,7 +22,7 @@ Key Components
 - EIA: The U.S. Energy Information Administration (EIA) is a principal agency of the U.S. Federal Statistical System responsible for collecting, analyzing, and disseminating energy information to support public policy-making, efficient markets, and public understanding of energy and its interaction with the economy and the environment.
 
 ## Data model (updated ERD diagram)
-![Updated ERD for Group 4 Project](https://raw.githubusercontent.com/m-bermudez/ISM6225-Dynamic-Web-App-Final-Project/refs/heads/main/OutagesERD.png)!
+![Updated ERD for Group 4 Project](https://raw.githubusercontent.com/m-bermudez/ISM6225-Dynamic-Web-App-Final-Project/refs/heads/main/OutagesERD.png)
 ## Overview of CRUD implementation
 
 ## Notable technical challenges and solutions
