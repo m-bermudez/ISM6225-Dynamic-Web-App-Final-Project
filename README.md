@@ -33,3 +33,6 @@ Key Components
     - Solution was posted above with the API
 
 - About Us page
+    - Another challenge involved displaying the "Role and Contributions" section in a symmetrical and organized manner. 
+    - To solve this, we used Copilot on Visual Studio to explore layout recommendations and best practices. One useful suggestion was to apply a margin-bottom property to the role-related CSS class, which helped ensure horizontal symmetry within the containing div. 
+    - Additionally, since the contribution details varied between team members, we implemented a flexible layout using the member-info class. This included dynamic spacing and the addition of margin-top properties to the contribution list elements, allowing for consistent spacing and visual alignment across all entries. 
