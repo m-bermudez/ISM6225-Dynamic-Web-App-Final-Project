@@ -24,6 +24,11 @@ Key Components
 ## Data model (updated ERD diagram)
 ![Updated ERD for Group 4 Project](https://raw.githubusercontent.com/m-bermudez/ISM6225-Dynamic-Web-App-Final-Project/refs/heads/main/OutagesERD.png)
 ## Overview of CRUD implementation
+Our CRUD functionality was inspired by design patterns observed in the data.gov repository, emphasizing clarity and usability.
+- Read: The Read page displays all outage records in a structured, scrollable layout.
+- Create: A "Create" button redirects users to a dedicated form page where they can input and submit new outage records.
+- Update: Each record includes an "Edit" button that leads to a separate page pre-filled with that record’s data, allowing users to make changes and update it.
+- Delete: The "Delete" button takes users to a confirmation page, ensuring they intentionally want to remove the selected record before finalizing the action.
 
 ## Notable technical challenges and solutions
 - Setting up the singleton service proved to be harder than we anticipated, but the solution was far simpler than we thought
